@@ -13,7 +13,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -24,6 +23,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 ## Multi-tenanting gem
 gem 'milia'
+# Twitter Bootstrap
+gem 'twitter-bootstrap-rails'
+# Bootstrap for devise
+gem 'devise-bootstrap-views'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -39,7 +42,7 @@ group :development, :test do
   gem 'byebug'
 
   # A more elegant debugging tool (with colors!). Just add binding.pry to your code to create a breakpoint
-  gem 'pry'
+  # gem 'pry'
   gem 'pry-byebug'
 end
 
