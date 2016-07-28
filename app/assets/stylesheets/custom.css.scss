@@ -1,0 +1,24 @@
+.jumbotron {
+  background-image:     asset-url('pm2.jpg');
+  background-size:      cover;
+  background-repeat:    no-repeat;
+  background-position:  center center;
+  background-color:     #fff;
+  text-shadow:          2px 2px 4px #000000;
+  color:                #fff;
+}
+
+.jumbotron h1 {
+  font-size:    3em;
+  padding:      25px;
+  text-align:   center;
+}
+
+.jumbotron h1,
+.jumbotron h2,
+.jumbotron h3,
+.jumbotron h4,
+.jumbotron h5,
+.jumbotron h6  {
+  color:  #fff
+}

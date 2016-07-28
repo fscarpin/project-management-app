@@ -1,2 +1,30 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="jumbotron">
+  <h1>Welcome to the Project Management App</h1>
+  <h3>You will love managing your projects here</h3>
+</div>
+
+<div class="row features">
+  <div class="col-md-3 col-md-offset-3">
+    <h2> Free Plan </h2>
+    <ul>
+      <li> Unlimited file uploads </li>
+      <li> Responsive design </li>
+      <li> Access anywhere </li>
+      <li> Up to 1 project </li>
+      <li> <strong> Price: Free </strong> </li>
+    </ul>
+    <%= link_to("Sign up now", new_user_registration_path, class: "btn btn-primary") %>
+  </div>
+
+  <div class="col-md-3">
+    <h2> Premium Plan </h2>
+    <ul>
+      <li> Unlimited file uploads </li>
+      <li> Responsive design </li>
+      <li> Access anywhere </li>
+      <li> <strong> Unlimited projects </strong> </li>
+      <li> <strong> Price: $10 </strong> </li>
+    </ul>
+    <%= link_to("Sign up now", new_user_registration_path, class: "btn btn-primary") %>
+  </div>
+</div>
