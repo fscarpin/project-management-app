@@ -17,6 +17,28 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
+
+      <!-- Tenant information: tenant name and plan -->
+      <%= fields_for (:tenant) do |w| %>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= w.label :name, "Organization" %>
+              <span class="description">(Unique name of your group or organization for the new account)</span>
+              <%= w.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= w.label :plan %>
+              <%= w.select :plan, options_for_select(Plan.get_options, selected: params[:plan]), {},
+                                  required: true,
+                                  class: "form-control"  %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
     <% end %>
   </div>
