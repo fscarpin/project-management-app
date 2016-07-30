@@ -13,7 +13,7 @@
       <li> Up to 1 project </li>
       <li> <strong> Price: Free </strong> </li>
     </ul>
-    <%= link_to("Sign up now", new_user_registration_path, class: "btn btn-primary") %>
+    <%= link_to("Sign up now", new_user_registration_path(tenant: {plan: Plan::PLAN_FREE}), class: "btn btn-primary") %>
   </div>
 
   <div class="col-md-3">
@@ -25,6 +25,6 @@
       <li> <strong> Unlimited projects </strong> </li>
       <li> <strong> Price: $10 </strong> </li>
     </ul>
-    <%= link_to("Sign up now", new_user_registration_path, class: "btn btn-primary") %>
+    <%= link_to("Sign up now", new_user_registration_path(tenant: {plan: Plan::PLAN_PREMIUM}), class: "btn btn-primary") %>
   </div>
 </div>

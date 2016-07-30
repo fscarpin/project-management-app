@@ -1,6 +1,9 @@
 class Plan
 
-  PLANS = [:free, :premium]
+  PLAN_FREE = :free
+  PLAN_PREMIUM = :premium
+
+  PLANS = [PLAN_FREE, PLAN_PREMIUM]
 
   def self.get_options
     options = Array.new
