@@ -1,0 +1,20 @@
+<% if models_have_any_error?(models) %>
+  <div class="alert alert-danger" role="alert">
+    <% errors = errors_from_models(models) %>
+    <strong><%= "Please fix the following " + "error".pluralize(errors.count) + ":" %></strong>
+    <ul>
+      <% errors.each do |error_msg| %>
+        <li> <%= error_msg %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+

@@ -27,4 +27,28 @@ module ApplicationHelper
     end
     flash_messages.join("\n").html_safe
   end
+
+  def models_have_any_error? (models)
+    has_errors = false
+
+    models.each do |m|
+      if m
+        has_errors = true if m.errors.any?
+      end
+    end
+
+    return has_errors
+  end
+
+  def errors_from_models (models)
+    errors = []
+
+    models.each do |model|
+      if model && model.errors.any?
+        errors += model.errors.full_messages
+      end
+    end
+
+    return errors
+  end
 end

@@ -8,11 +8,14 @@
     <%= link_to "Project Management App", root_path, class: "navbar-brand" %>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
+        <% if current_user %>
+          <li> <%= link_to ("<i class='fa fa-users'> Invite Member </i>".html_safe), new_member_path %> </li>
+        <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li> <%= link_to(("<i class='fa fa-user'> My Profile</i>").html_safe, edit_user_registration_path(current_user)) %> </li>
+          <li> <%= link_to ("<i class='fa fa-user'> My Profile</i>".html_safe), edit_user_registration_path(current_user) %> </li>
           <li> <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-primary navbar-btn" %> </li>
         <% else %>
           <li> <%= button_to "Sign In", new_user_session_path, method: :get, class: "btn btn-primary navbar-btn" %> </li>

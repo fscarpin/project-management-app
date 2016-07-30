@@ -1,4 +1,5 @@
-<%= bootstrap_devise_error_messages! %>
+<%= render "shared/errors_for_models", models: [resource, @tenant] %>
+
 <div class="panel panel-default devise-bs">
   <div class="panel-heading">
     <h4><%= t('.sign_up', :default => "Sign up") %></h4>
@@ -10,7 +11,7 @@
         <%= f.email_field :email, autofocus: true, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :password %><br />
+        <%= f.label :password %>
         <%= f.password_field :password, class: "form-control" %>
       </div>
       <div class="form-group">
@@ -23,17 +24,17 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <%= w.label :name, "Organization" %>
-              <span class="description">(Unique name of your group or organization for the new account)</span>
+              <%= w.label :name, "Organization name" %>
               <%= w.text_field :name, class: "form-control" %>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <%= w.label :plan %>
-              <%= w.select :plan, options_for_select(Plan.get_options, selected: params[:plan]), {},
+              <%= w.select :plan, options_for_select(Plan.get_options, selected: (params[:tenant][:plan] if params[:tenant])),
+                                  {include_blank: "Please select a plan..."},
                                   required: true,
-                                  class: "form-control"  %>
+                                  class: "form-control" %>
             </div>
           </div>
         </div>
