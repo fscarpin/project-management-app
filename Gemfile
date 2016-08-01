@@ -27,6 +27,8 @@ gem 'milia'
 gem 'twitter-bootstrap-rails'
 # Bootstrap for devise
 gem 'devise-bootstrap-views'
+#Bootstrap datepicker
+gem 'bootstrap-datepicker-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

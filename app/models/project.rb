@@ -15,12 +15,12 @@ class Project < ActiveRecord::Base
 
   # This method will be removed later
   def self.by_plan_and_tenant(tenant_id)
-    tenant = Tenant.find_by(tenant_id)
+    tenant = Tenant.find_by(id: tenant_id)
 
     if tenant.plan == Plan::PLAN_PREMIUM
       return tenant.projects
     else
-      return [tenant.projects.first]
+      return tenant.projects.order(:id).limit(1)
     end
   end
 end

@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy, :new, :create]
+  before_action :verify_tenant
 
   # GET /projects
   # GET /projects.json
@@ -24,12 +26,13 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    binding.pry
+    params[:project][:tenant_id] = @tenant.id
     @project = Project.new(project_params)
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
+        format.html { redirect_to root_url, notice: 'Project was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -42,7 +45,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Project was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +68,17 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+    end
+
+    def set_tenant
+      @tenant = Tenant.find(params[:tenant_id])
+    end
+
+    def verify_tenant
+      if Tenant.current_tenant.id.to_s != params[:tenant_id]
+        flash[:error] = "You are not allowed to access any organization other than your own"
+        redirect_to root_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

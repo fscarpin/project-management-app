@@ -11,6 +11,8 @@ class HomeController < ApplicationController
 
       @tenant = Tenant.current_tenant
       params[:tenant_id] = @tenant.id
+
+      @projects = Project.by_plan_and_tenant(@tenant.id)
     end
   end
 end

@@ -2,33 +2,37 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:details) %></th>
-      <th><%= model_class.human_attribute_name(:expected_completion_date) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
+<% if @projects.empty? %>
+  <p> You don't have any projects </p>
+<% else %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to tenant_project_path(project, tenant_id: @tenant.id) %></td>
-        <td><%= project.title %></td>
-        <td><%= project.details %></td>
-        <td><%= project.expected_completion_date %></td>
-        <td>
-          <%= link_to "Edit", edit_tenant_project_path(project, tenant_id: @tenant.id), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Delete",
-                      tenant_project_path(project, tenant_id: @tenant.id),
-                      :method => :delete,
-                      :data => { :confirm => "Are you sure?" },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
+        <th><%= model_class.human_attribute_name(:title) %></th>
+        <th><%= model_class.human_attribute_name(:details) %></th>
+        <th><%= model_class.human_attribute_name(:expected_completion_date) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to tenant_project_path(id: project.id, tenant_id: @tenant.id) %></td>
+          <td><%= project.title %></td>
+          <td><%= project.details %></td>
+          <td><%= project.expected_completion_date %></td>
+          <td>
+            <%= link_to "Edit", edit_tenant_project_path(project, tenant_id: @tenant.id), :class => 'btn btn-default btn-xs' %>
+            <%= link_to "Delete",
+                        tenant_project_path(project, tenant_id: @tenant.id),
+                        :method => :delete,
+                        :data => { :confirm => "Are you sure?" },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
-<%= link_to "New Project", new_tenant_project_path, :class => 'btn btn-primary' %>
+<%= link_to "New Project", new_tenant_project_path(tenant_id: @tenant.id), :class => 'btn btn-primary' %>
