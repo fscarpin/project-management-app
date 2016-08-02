@@ -2,6 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
 <% if @projects.empty? %>
   <p> You don't have any projects </p>
 <% else %>
@@ -17,8 +18,7 @@
     <tbody>
       <% @projects.each do |project| %>
         <tr>
-          <td><%= link_to tenant_project_path(id: project.id, tenant_id: @tenant.id) %></td>
-          <td><%= project.title %></td>
+          <td><%= link_to project.title, tenant_project_path(tenant_id: @tenant.id, id: project.id)  %></td>
           <td><%= project.details %></td>
           <td><%= project.expected_completion_date %></td>
           <td>
@@ -35,4 +35,6 @@
   </table>
 <% end %>
 
-<%= link_to "New Project", new_tenant_project_path(tenant_id: @tenant.id), :class => 'btn btn-primary' %>
+<% if @tenant.can_create_more_projects? %>
+  <%= link_to "New Project", new_tenant_project_path(tenant_id: @tenant.id), :class => 'btn btn-primary' %>
+<% end %>

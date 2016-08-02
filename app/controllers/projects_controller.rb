@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    binding.pry
     params[:project][:tenant_id] = @tenant.id
     @project = Project.new(project_params)
 

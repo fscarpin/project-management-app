@@ -28,6 +28,7 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  # Returns true if any of the given models have any errors
   def models_have_any_error? (models)
     has_errors = false
 
@@ -40,6 +41,7 @@ module ApplicationHelper
     return has_errors
   end
 
+  # Returns an errors array with all the erros for the given models
   def errors_from_models (models)
     errors = []
 
@@ -50,5 +52,15 @@ module ApplicationHelper
     end
 
     return errors
+  end
+
+  # Returns the tenant name for the given tenant_id
+  def tenant_name(tenant_id)
+    return Tenant.find(tenant_id).name
+  end
+
+  # Returns the tenant plan for the given tenant_id
+  def tenant_plan(tenant_id)
+    return Tenant.find(tenant_id).plan
   end
 end

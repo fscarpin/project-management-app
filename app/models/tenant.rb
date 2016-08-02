@@ -7,6 +7,14 @@ class Tenant < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :plan, message: "must be selected"
 
+  def can_create_more_projects?
+    if projects.count > 0 && plan == Plan::PLAN_FREE
+      return false
+    end
+
+    return true
+  end
+
   def self.create_new_tenant(tenant_params, user_params, coupon_params)
 
     tenant = Tenant.new(tenant_params)

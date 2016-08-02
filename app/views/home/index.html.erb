@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <h1> Company: <%= @tenant.name %> </h1>
+  <h3 class="pull-right"> Company: <%= @tenant.name %> </h3>
   <%= render "projects/list" %>
 <% else %>
   <%= render "home/welcome" %>

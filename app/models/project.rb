@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   validate :free_plan_can_have_only_one_project
 
   def free_plan_can_have_only_one_project
-    if self.new_record? && tenant.projects.count > 0 && tenant.plan == Plan::PLAN_FREE
+    if self.new_record? && !tenant.can_create_more_projects?
       errors.add :base, "Free plans cannot have more than one project"
     end
   end
