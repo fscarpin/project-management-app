@@ -8,6 +8,8 @@ class Artifact < ActiveRecord::Base
 
   validate :uploaded_file_size
 
+  private
+
   def uploaded_file_size
     if file && file.size > MAX_FILE_SIZE
       errors.add(:file, "File size must be less than #{MAX_FILE_SIZE}")
