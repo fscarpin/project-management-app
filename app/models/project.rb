@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :tenant
+  has_many :artifacts
 
   # Project title must be unique
   validates_uniqueness_of :title, message: "is being used by another project. Please specify another name."
