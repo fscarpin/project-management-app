@@ -3,7 +3,7 @@
   <% if @project.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h3>
+        <h3 class="panel-title">Please fix the following <%= "error".pluralize(@project.errors.count) %>:</h3>
       </div>
       <div class="panel-body">
         <ul>

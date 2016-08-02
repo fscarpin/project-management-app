@@ -2,7 +2,10 @@ class Project < ActiveRecord::Base
   belongs_to :tenant
 
   # Project title must be unique
-  validates_uniqueness_of :title
+  validates_uniqueness_of :title, message: "is being used by another project. Please specify another name."
+  validates_presence_of :title, message: "can't be empty"
+  validates_presence_of :details, message: "can't be empty"
+  validates_presence_of :expected_completion_date, message: "can't be empty"
 
   # Free plan can only create one project
   validate :free_plan_can_have_only_one_project
