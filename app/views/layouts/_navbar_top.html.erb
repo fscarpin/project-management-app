@@ -19,7 +19,7 @@
             <%= link_to edit_user_registration_path do %>
               <i class='fa fa-user'>
                 My Profile
-                <%= tenant_plan(params[:tenant_id]) == Plan::PLAN_FREE ? "(Free Plan)" : "(PREMIUM Plan)" %>
+                <%= tenant_plan(Tenant.current_tenant_id) == Plan::PLAN_FREE ? "(Free Plan)" : "(PREMIUM Plan)" %>
               </i>
             <% end %>
           </li>
