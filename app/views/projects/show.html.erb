@@ -12,7 +12,7 @@
   <dd><%= @project.expected_completion_date %></dd>
 </dl>
 
-<%= link_to "< Back to Home", root_path, :class => 'btn btn-default'  %>
+<%= link_to "< Back to Projects", root_path, :class => 'btn btn-default'  %>
 <%= link_to "Edit", edit_tenant_project_path(tenant: @tenant, project: @project), :class => 'btn btn-warning' %>
 <%= link_to "Delete",
               tenant_project_path(tenant: @tenant, project: @project),
