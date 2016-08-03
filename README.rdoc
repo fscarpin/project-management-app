@@ -1,4 +1,4 @@
 Project Management App
 
-There's a live version of the app available here:
+A live version of the app is available here:
 https://fscarpin-pm-app.herokuapp.com
