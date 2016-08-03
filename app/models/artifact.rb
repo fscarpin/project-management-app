@@ -15,7 +15,7 @@ class Artifact < ActiveRecord::Base
   def upload_file_to_amazon_s3
     s3 = Aws::S3::Resource.new
     tenant_name = self.project.tenant.name
-    obj = s3.bucket(ENV['AWS_S3_BUCKET_PM_APP']).object(tenant_name + "/" + file.original_filename)
+    obj = s3.bucket(ENV['AWS_S3_BUCKET_PM_APP']).object(Rails.env + "/" + tenant_name + "/" + file.original_filename)
     obj.upload_file(file.path, acl: "public-read")
     self.key = obj.public_url
   end
