@@ -31,10 +31,11 @@
           <div class="col-md-6">
             <div class="form-group">
               <%= w.label :plan %>
-              <%= w.select :plan, options_for_select(Plan.get_options, selected: (params[:tenant][:plan] if params[:tenant])),
-                                  {include_blank: "Please select a plan..."},
-                                  required: true,
-                                  class: "form-control" %>
+              <%= w.select :plan,
+                           options_for_select(Plan.get_options, selected: (params[:tenant][:plan] if params[:tenant])),
+                           {include_blank: "Please select a plan..."},
+                           required: true,
+                           class: "form-control" %>
             </div>
           </div>
         </div>
